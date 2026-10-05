@@ -41,6 +41,10 @@ class ImageModuleTest extends TestCase
 
     public function testImage(): void
     {
+        if (!function_exists('imagecreatetruecolor')) {
+            $this->markTestSkipped('The PHP GD extension is required for image upload tests.');
+        }
+
         Storage::fake('local');
         Storage::fake('public');
 
